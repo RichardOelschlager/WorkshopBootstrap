@@ -1,0 +1,142 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>My Todo App — Bootstrap 5</title>
+
+    <!-- Google Font -->
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Bootstrap 5 -->
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+      integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH"
+      crossorigin="anonymous"
+    />
+
+    <!-- Bootstrap Icons -->
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css"
+    />
+
+    <style>
+      body { background-color: #f8f9fa; font-family: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, sans-serif; }
+      .app-wrap { max-width: 980px; }
+      .page-title { font-weight: 600; }
+      .card-flat { border: 1px solid rgba(0,0,0,.1); box-shadow: none; }
+      .btn-icon { width: 34px; height: 34px; display: inline-flex; align-items: center; justify-content: center; padding: 0; }
+      .muted-label { color: #6c757d; font-weight: 500; }
+      .attachments-drop { border: 1px dashed rgba(0,0,0,.2); border-radius: .375rem; min-height: 54px; background: #fff; }
+      .todo-item { border: 1px solid rgba(0,0,0,.1); border-left: 4px solid #0d6efd; border-radius: .375rem; }
+      .todo-title { font-weight: 600; }
+      .todo-meta { font-size: .875rem; color: #6c757d; }
+      .badge-dark { background-color: #343a40; }
+      .toolbar .btn { border-color: rgba(0,0,0,.15); }
+      .btn-edit { border-color: #0d6efd; color: #0d6efd; }
+      .btn-edit:hover { background-color: #0d6efd; color: #fff; }
+      .btn-delete { border-color: #dc3545; color: #dc3545; }
+      .btn-delete:hover { background-color: #dc3545; color: #fff; }
+    </style>
+  </head>
+  <body>
+    <main class="py-4">
+      <div class="container app-wrap">
+        <!-- Title -->
+        <h1 class="text-center page-title mb-4">My Todo App</h1>
+
+        <!-- Create Todo Card -->
+        <div class="card card-flat bg-white mb-4">
+          <div class="card-body">
+            <form>
+              <div class="mb-3">
+                <label for="title" class="form-label muted-label">Title</label>
+                <input id="title" type="text" class="form-control" />
+              </div>
+              <div class="mb-3">
+                <label for="description" class="form-label muted-label">Description</label>
+                <textarea id="description" class="form-control" rows="3"></textarea>
+              </div>
+
+              <div class="row g-3 align-items-end">
+                <div class="col-12 col-md-6">
+                  <label class="form-label muted-label" for="due">Due Date</label>
+                  <input id="due" type="datetime-local" class="form-control" />
+                </div>
+                <div class="col-12 col-md-6">
+                  <label class="form-label muted-label" for="assignee">Assign to Person (Optional)</label>
+                  <select id="assignee" class="form-select">
+                    <option selected>-- Select Person (Optional) --</option>
+                    <option>John Doe</option>
+                    <option>Jane Doe</option>
+                  </select>
+                </div>
+              </div>
+
+              <div class="mt-3">
+                <div class="d-flex align-items-center justify-content-between mb-2">
+                  <label class="form-label muted-label mb-0" for="files">Attachments</label>
+                  <button class="btn btn-outline-secondary btn-sm" type="reset" title="Clear attachments"><i class="bi bi-x"></i></button>
+                </div>
+                <div class="input-group mb-2">
+                  <input id="files" type="file" class="form-control" multiple />
+                </div>
+                <div class="attachments-drop"></div>
+              </div>
+
+              <div class="d-flex justify-content-end mt-3">
+                <button class="btn btn-primary" type="reset"><i class="bi bi-plus-lg me-1"></i> Add Todo</button>
+              </div>
+            </form>
+          </div>
+        </div>
+
+        <!-- Todos Header + Tools -->
+        <div class="d-flex align-items-center justify-content-between mb-2">
+          <h2 class="h5 m-0">Todos</h2>
+          <div class="toolbar d-flex gap-2">
+            <button class="btn btn-outline-secondary btn-icon" title="Filter"><i class="bi bi-funnel"></i></button>
+            <button class="btn btn-outline-secondary btn-icon" title="Sort"><i class="bi bi-sort-down"></i></button>
+          </div>
+        </div>
+
+        <!-- Todo Item (Example) -->
+        <div class="todo-item bg-white p-3">
+          <div class="d-flex align-items-start gap-3">
+            <div class="flex-grow-1">
+              <div class="d-flex align-items-center justify-content-between">
+                <div class="d-flex align-items-center gap-2">
+                  <span class="todo-title">Example Todo</span>
+                </div>
+                <div class="d-flex align-items-center gap-2">
+                  <small class="text-muted">Created: 2025-07-01</small>
+                  <div class="vr"></div>
+
+                  <button class="btn btn-outline-success btn-icon" title="Complete"><i class="bi bi-check2"></i></button>
+                  <button class="btn btn-edit btn-icon" title="Edit"><i class="bi bi-pencil"></i></button>
+                  <button class="btn btn-delete btn-icon" title="Delete"><i class="bi bi-trash"></i></button>
+                </div>
+              </div>
+              <div class="todo-meta mt-1">Description goes here</div>
+
+              <div class="d-flex flex-wrap align-items-center gap-2 mt-2">
+                <span class="badge bg-light text-dark"><i class="bi bi-calendar-event me-1"></i> Due: 2025-07-10</span>
+                <span class="badge bg-primary"><i class="bi bi-person-fill me-1"></i> John Doe</span>
+                <span class="badge badge-dark">2 attachments</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </main>
+
+    <script
+      src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"
+      integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz"
+      crossorigin="anonymous"
+    ></script>
+  </body>
+</html>
